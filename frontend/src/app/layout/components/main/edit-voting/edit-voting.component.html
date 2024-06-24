@@ -1,0 +1,44 @@
+<div style="padding: 1rem;" class="col-md-6">
+  <h3 *ngIf="invalidVoting">Invalid voting</h3>
+
+  <div *ngIf="!invalidVoting">
+    <h3 *ngIf="!isOwner">No permission</h3>
+    
+    <div *ngIf="isOwner">
+      <h3 style="margin-bottom: 1rem;">Edit voting {{votingId}}</h3>
+      <div class="form-group">
+          <label>Candidate list:</label>
+          <textarea type="text" class="form-control" style="height: 25vh;"
+              [placeholder]="placeholderCandidate"
+              [(ngModel)]="candidateListString" (ngModelChange)="changeCandidateList()"></textarea>
+      </div>
+      <p *ngIf="hasDuplicateCandidate" style="color: red; margin-bottom: 0;">
+          *There are duplicate names in candidate list.
+      </p>
+      <p>Candidates: 
+          <span [class.red-text]="candidateList?.length! > voting?.totalCandidates!">
+              {{candidateList?.length}}</span>/{{voting?.totalCandidates}}
+      </p>
+      <div class="form-group" style="margin-top: 2rem;">
+          <label>Voter address list:</label>
+          <textarea type="text" class="form-control" style="height: 25vh;"
+              [placeholder]="placeholderAddress"
+              [(ngModel)]="addressListString" (ngModelChange)="changeAddressList()"></textarea>
+      </div>
+      <p *ngIf="hasDuplicateAddress" style="color: red; margin-bottom: 0;">
+          *There are duplicate address in voter address list.
+      </p>
+      <p>Voter addresses: 
+          <span [class.red-text]="addressList?.length! > voting?.totalVoters!">
+              {{addressList?.length}}</span>/{{voting?.totalVoters}}
+      </p>
+      <button type="button" class="btn btn-primary"
+          [disabled]="candidateList?.length! !== voting?.totalCandidates!
+                      || addressList?.length! !== voting?.totalVoters!
+                      || hasDuplicateCandidate
+                      || hasDuplicateAddress"
+          (click)="submit()">Submit
+      </button>
+    </div>
+  </div>
+</div>

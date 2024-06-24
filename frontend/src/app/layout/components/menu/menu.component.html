@@ -1,0 +1,10 @@
+<div class="layout-menu">
+    <ul>
+        <li *ngFor="let item of model">
+            <a [routerLink]="coreURL + item.link" style="color: aqua;">
+                <span><i [ngClass]="item.icon"></i></span>
+                {{item.label}}
+            </a>
+        </li>
+    </ul>
+</div>

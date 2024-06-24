@@ -1,0 +1,32 @@
+<div *ngIf="numberOfVoting === 0">
+  <h4>No result of voting</h4>
+</div>
+<div *ngIf="searchId !== '' && votingOnSearch === null">
+  <h4>No result of voting id "{{searchId}}"</h4>
+</div>
+<div *ngIf="numberOfVoting !== 0 && (searchId === '' || (searchId !== '' && votingOnSearch !== null))">
+  <div class="card">
+    <div class="title">
+      <h4>Result Voting {{searchId !== '' ? votingOnSearch.votingId : voting.votingId}}</h4>
+    </div>
+    <div class="red-line"></div>
+    <div class="grid" style="margin-right: -3px; margin-top: 10px;">
+      <div class="col-12">
+        <label for="option">List Voting</label>
+        <div *ngFor="let item of searchId !== '' ? votingOnSearch.result : voting.result">
+          <div class="row">
+            <label>{{item.candidate}}</label>
+            <p-progressBar [value]="item.totalVotes"></p-progressBar>
+          </div>
+        </div>
+      </div>
+      <div class="col-12" style="margin-top: 30px;">
+        <label for="option">Char</label>
+        <p-chart type="doughnut"
+            [data]="searchId !== '' ? dataOnSearch : data"
+            [options]="searchId !== '' ? optionsOnSearch : options">
+        </p-chart>
+      </div>
+    </div>
+  </div>
+</div>

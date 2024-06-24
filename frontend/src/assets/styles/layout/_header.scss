@@ -1,0 +1,36 @@
+.layout-header {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 4rem;
+    // background: linear-gradient(90deg, #182858 60.5%, #3c58a6 90.5%);
+    background-color: #182858;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0px 3px 5px rgba(0,0,0,.02), 0px 0px 2px rgba(0,0,0,.05), 0px 1px 4px rgba(0,0,0,.08);
+
+    .layout-header-logo {
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+
+        img {
+            border-radius: 5px;
+            height: 2.5rem;
+        }
+
+        
+    }
+
+    // button {
+    //     margin: 1rem;
+    // }
+
+    .layout-header-item {
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+    }
+}

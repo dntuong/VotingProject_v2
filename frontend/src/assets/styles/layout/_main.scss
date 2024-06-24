@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+  }
+
+.layout-main-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10rem;
+    padding: 1rem;
+    padding-top: 5rem;
+    min-height: 100vh;
+    justify-content: space-between;
+    color: #ffffff;
+    background-color: #3c58a6;
+    .layout-main {
+        flex: 1 1 auto;
+        // background: linear-gradient(90deg, #182858 60.5%, #3c58a6 90.5%);
+        background-color: #182858;
+    }
+}

@@ -1,0 +1,10 @@
+<!-- <a href="assets/images/voting-logo.png" download="logo">
+  <img src="assets/images/voting-logo.png" alt="logo">
+</a> -->
+
+
+<ul style="list-style-type: none; margin-top: 1rem;">
+  <li *ngFor="let file of fileUploads">
+    <app-upload-details [fileUpload]="file" [isViewer]="true"></app-upload-details>
+  </li>
+</ul>

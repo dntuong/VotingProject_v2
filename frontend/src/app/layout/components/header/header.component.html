@@ -1,0 +1,19 @@
+<div class="layout-header">
+    <a class="layout-header-logo" [routerLink]="homeURL">
+        <img src="assets/images/voting-logo.png" alt="logo" />
+    </a>
+    <div class="layout-header-item">
+        <div class="input-group">
+            <span class="input-group-text"><i class="pi pi-search"></i></span>
+            <input type="text" class="form-control" placeholder="Search"
+                (input)="onSearch($event)">
+        </div>
+    </div>
+    <div class="layout-header-item">
+        <button type="button" class="btn btn-warning" (click)="connectMetamask()">Connect MetaMask</button>
+        <!-- <select id="accountSelect" (change)="selectAccount($event.target.value)">
+            <option *ngFor="let account of accounts" [value]="account">{{ account }}</option>
+        </select> -->
+    </div>
+    
+</div>

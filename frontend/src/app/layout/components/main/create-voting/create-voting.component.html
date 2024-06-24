@@ -1,0 +1,86 @@
+<div style="padding: 1rem;">
+    <div class="title">
+        <h4>Create Voting</h4>
+    </div>
+
+    <div class="row g-3 align-items-center" style="margin-bottom: 1rem;">
+        <div class="col-xl-2">
+            <label class="col-form-label">Voting ID</label>
+        </div>
+        <div class="col-xl-2 col-auto">
+            <input class="form-control" style="padding: 0.75rem;" type="number"
+                [placeholder]="votingId" disabled>
+        </div>
+    </div>
+    <div></div>
+    <form [formGroup]="votingForm" (ngSubmit)="doneCreating()">
+        <div class="row g-3 align-items-center" style="margin-bottom: 1rem;">
+            <div class="col-xl-2">
+                <label class="col-form-label">Total voters</label>
+            </div>
+            <div class="col-xl-2 col-auto">
+                <input class="form-control" style="padding: 0.75rem;" type="number" min="3"
+                    placeholder="Type a number" formControlName="totalVoters">
+            </div>
+        </div>
+        <div class="row g-3 align-items-center" style="margin-bottom: 1rem;">
+            <div class="col-xl-2">
+                <label class="col-form-label">Total candidates</label>
+            </div>
+            <div class="col-xl-2 col-auto">
+                <input class="form-control" style="padding: 0.75rem;" type="number" min="2"
+                    placeholder="Type a number" formControlName="totalCandidates"
+                    (ngModelChange)="clearError()">
+            </div>
+        </div>
+        <div class="row g-3 align-items-center" style="margin-bottom: 1rem;">
+            <div class="col-xl-2">
+                <label class="col-form-label">Max votes per voter</label>
+            </div>
+            <div class="col-xl-2 col-auto">
+                <input class="form-control" style="padding: 0.75rem;" type="number" min="1"
+                    placeholder="Type a number" formControlName="maxVotesPerVoter"
+                    (ngModelChange)="clearError()">
+            </div>
+            <p style="font-size: 0.75rem; color: red;" *ngIf="invalidMaxVotesPerVoter">
+                *Max votes per voter must be less than Total candidates.
+            </p>
+        </div>
+        <div class="row g-3 align-items-center" style="margin-bottom: 1rem;">
+            <div class="col-xl-2">
+                <label class="col-form-label">Start time</label>
+            </div>
+            <div class="col-xl-2 col-auto">
+                <p-calendar [iconDisplay]="'input'" [showIcon]="true" [showTime]="true"
+                    formControlName="startTime" (ngModelChange)="clearError()">
+                </p-calendar>
+            </div>
+        </div>
+        <div class="row g-3 align-items-center" style="margin-bottom: 1rem;">
+            <div class="col-xl-2">
+                <label class="col-form-label">End time</label>
+            </div>
+            <div class="col-xl-2 col-auto">
+                <p-calendar [iconDisplay]="'input'" [showIcon]="true" [showTime]="true"
+                    formControlName="endTime" (ngModelChange)="clearError()">
+                </p-calendar>
+            </div>
+            <p style="font-size: 0.75rem; color: red;" *ngIf="invalidEndTime">
+                *End time must be greater than or equal to Start time.
+            </p>
+        </div>
+        <div class="row g-3 align-items-center">
+            <div class="col-xl-2">
+            </div>
+            <div class="col-xl-2 col-auto d-flex justify-content-end">
+                <button type="submit" class="btn btn-success" [disabled]="votingForm.invalid"
+                    (click)="doneCreating()">Create
+                </button>
+                <button type="button" class="btn btn-danger" style="margin-left: 1rem;"
+                    (click)="cancelCreating()">Cancel
+                </button>
+            </div>
+        </div>
+    </form>
+    
+</div>
