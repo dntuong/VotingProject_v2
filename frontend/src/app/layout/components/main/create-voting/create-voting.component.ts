@@ -100,11 +100,11 @@ export class CreateVotingComponent implements OnInit {
 
   cancelCreating() {
     this.votingForm.reset()
-    // this.utilModule.callContractMethod('totalElections')
+    // this.utilModule.sendContractMethod('totalElections')
     // test
-    this.apiService.getVotingList().subscribe((data) => {
-      console.log(data)
-    })
+    // this.apiService.getVotingList().subscribe((data) => {
+    //   console.log(data)
+    // })
     //
   }
 
@@ -116,7 +116,8 @@ export class CreateVotingComponent implements OnInit {
   private async createElection(arg: any[], startTime: Date, endTime: Date) {
     arg.splice(arg.length - 4, 4)
     arg.push(this.toSecond(startTime), this.toSecond(endTime))
-    await this.utilModule.sendContractMethod('createElection', ...arg)
+    // await this.utilModule.sendContractMethod('createElection', ...arg)
+    await this.utilModule.createVoting(arg)
   }
 
   private getKeyIdMax(): number {

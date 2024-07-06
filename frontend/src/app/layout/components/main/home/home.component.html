@@ -3,9 +3,10 @@
   <p>{{searchId !=="" ? numberOfVotingOnSearch : numberOfVoting}} voting(s) available.</p>
 
   <!-- <div *ngIf="numberOfVoting > 0"> -->
-    <div *ngFor="let voting of searchId !=='' ? votingListOnSearch : votingList" style="margin-bottom: 1rem;">
-      <div class="row">
-        <div class="col-md-4">
+    <div class="row">
+      <div *ngFor="let voting of searchId !=='' ? votingListOnSearch : votingList"
+          style="margin-bottom: 1rem;" class="col-md-4">
+        <!-- <div class="col-md-4"> -->
           <div class="card" style="background-color: #374d88;">
             <div class="card-body">
               <h5 style="color: aqua;">
@@ -26,7 +27,7 @@
               </div>
             </div>
           </div>
-        </div>
+        <!-- </div> -->
       </div>
     </div>
   <!-- </div> -->
