@@ -15,7 +15,7 @@ builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnC
 // Add CORS services
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowLocalhost4201",
+    options.AddPolicy("AllowAllOrigins",
         builder => builder.WithOrigins("http://localhost:4201", "http://172.0.0.1:4201")
             .AllowAnyHeader()
             .AllowAnyMethod());
@@ -36,7 +36,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 // Use the CORS middleware
-app.UseCors("AllowLocalhost4201");
+// app.UseCors("AllowLocalhost4201");
+app.UseCors("AllowAllOrigins");
 
 app.UseAuthorization();
 
