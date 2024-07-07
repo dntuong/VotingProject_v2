@@ -866,11 +866,11 @@ export class UtilModule {
     }
   }
 
-  private async getGasPrice() {
-    const blockGas = (await this.web3.eth.getBlock('latest')).gasLimit
-    const gasPrice = parseInt(await this.web3.eth.getGasPrice())
-    return blockGas < gasPrice ? blockGas : gasPrice
-  }
+  // private async getGasPrice() {
+  //   const blockGas = (await this.web3.eth.getBlock('latest')).gasLimit
+  //   const gasPrice = parseInt(await this.web3.eth.getGasPrice())
+  //   return blockGas < gasPrice ? blockGas : gasPrice
+  // }
 
   private getEventName(methodName: string): string {
     switch (methodName) {

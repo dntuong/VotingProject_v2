@@ -86,7 +86,7 @@ export class CreateVotingComponent implements OnInit {
     }
     try {
       console.log("Voting:", voting)
-      await this.createElection(Object.values(voting), startTime, endTime)
+      // await this.createElection(Object.values(voting), startTime, endTime)
       sessionStorage.setItem(String(this.votingId), JSON.stringify(voting))
       this.router.navigateByUrl(URL.MAIN + CHARACTER.SLASH + URL.HOME)
     }

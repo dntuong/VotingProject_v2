@@ -1,21 +1,25 @@
 <div style="padding: 1rem;">
-  <h3 *ngIf="invalidVoting">Invalid voting</h3>
-  <div *ngIf="!invalidVoting">
-    <h3 *ngIf="!isVoter">No permission</h3>
-    <div *ngIf="isVoter">
-      <h3 style="margin-bottom: 1rem;">Voting {{votingId}}</h3>
-      
-      <div class="option col-md-4" *ngFor="let candidate of candidates"
-          (click)="selectCandidate(candidate)" [class.option-selected]="candidate.selected">
-        <input type="checkbox" [(ngModel)]="candidate.selected" style="display: none">
-        {{ candidate.name }}
+  <h3 *ngIf="!isStarted">Voting is not started</h3>
+  <h3 *ngIf="isStarted && isEnded">Voting is ended</h3>
+  <div *ngIf="isStarted && !isEnded">
+    <h3 *ngIf="invalidVoting">Invalid voting</h3>
+    <div *ngIf="!invalidVoting">
+      <h3 *ngIf="!isVoter">No permission</h3>
+      <div *ngIf="isVoter">
+        <h3 style="margin-bottom: 1rem;">Voting {{votingId}}</h3>
+        
+        <div class="option col-md-4" *ngFor="let candidate of candidates"
+            (click)="selectCandidate(candidate)" [class.option-selected]="candidate.selected">
+          <input type="checkbox" [(ngModel)]="candidate.selected" style="display: none">
+          {{ candidate.name }}
+        </div>
+        
+        <p>Selected: {{votedCandidates}}/{{maxVotesPerVoter}}</p>
+        <button type="button" class="btn btn-primary" [disabled]="votedCandidates !== maxVotesPerVoter"
+            (click)="submit()">
+          Submit
+        </button>
       </div>
-      
-      <p>Selected: {{votedCandidates}}/{{maxVotesPerVoter}}</p>
-      <button type="button" class="btn btn-primary" [disabled]="votedCandidates !== maxVotesPerVoter"
-          (click)="submit()">
-        Submit
-      </button>
     </div>
   </div>
 </div>

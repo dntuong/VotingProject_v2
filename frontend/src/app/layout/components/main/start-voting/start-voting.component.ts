@@ -16,6 +16,8 @@ export class StartVotingComponent {
   voting?: Voting
 
   isVoter: boolean = true
+  isStarted: boolean = true
+  isEnded: boolean = false
 
   candidates = [
     { name: 'Option 1', selected: false }
@@ -34,6 +36,14 @@ export class StartVotingComponent {
     this.voting = JSON.parse(sessionStorage.getItem(this.votingId!)!) as Voting
     if (this.voting === null) {
       this.invalidVoting = true
+      return
+    }
+    if (!this.compareDates(this.voting.startTime)) {
+      this.isStarted = false
+      return
+    }
+    if (this.compareDates(this.voting.endTime)) {
+      this.isEnded = true
       return
     }
     const voterList = JSON.parse(localStorage.getItem(KEY_ADDRESS.VOTER_LIST)!) as string[]
@@ -68,4 +78,14 @@ export class StartVotingComponent {
     sessionStorage.setItem(String(this.votingId), JSON.stringify(this.voting))
     this.router.navigateByUrl(URL.MAIN + CHARACTER.SLASH + URL.RESULT_VOTING)
   }
+
+  compareDates(specifiedDateTime: string): boolean {
+    const now = new Date();
+    const [datePart, timePart] = specifiedDateTime.split(' ');
+    const [day, month, year] = datePart.split('/');
+    const [hours, minutes] = timePart.split(':');
+    const formattedDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+    const specifiedDate = new Date(formattedDateTime);
+    return now >= specifiedDate
+}
 }
